@@ -9,16 +9,21 @@
 // (null, undefined, numbers, no argument at all), junk mixed in with good
 // values, and the tricky stuff like 0 vs null and NaN.
 //
-// The README warns that reverseString might get handed a -1, so bad input gets
+// The Assignment warns that reverseString might get handed a -1, so bad input gets
 // as much attention as good input.
 //
-// Each group quotes the function it's testing, and the comments point at the
-// line they're about as main.js:LINE.
 //
-// The two helpers in main.js are not exported, so they are not tested for
-// directly. Almost every test below still ends up running one of them, since
+// The two helpers in main.js are not exported, so they are not tested for directly. 
+// Almost every test below still ends up running one of them, since
 // toText (main.js:7-10) is why bad input comes back as "", and toNumber
 // (main.js:14-18) is why sumOfArray and findMax skip booleans, NaN and Infinity.
+
+
+
+
+// My biggest question is about how to know what to check for. Is there a list of things that need to be tested for.
+// If the program gets complex enough testing for every possible scenerio seems impossible. 
+
 
 const {
   sumOfArray,
@@ -54,16 +59,15 @@ describe('sumOfArray', () => {
     expect(sumOfArray([1, 2, 3])).toBe(6);
   });
 
-  // Easy to only ever test this with small positive integers, so checking both
-  // signs and decimals too.
+  // Easy to only ever test this with small positive integers, so checking both signs and decimals too.
   test('handles negatives and decimals', () => {
     expect(sumOfArray([-1, -2, -3])).toBe(-6);
     expect(sumOfArray([5, -3])).toBe(2);
     expect(sumOfArray([1.5, 2.5])).toBe(4);
   });
 
-  // 0.1 + 0.2 is 0.30000000000000004, so toBe would fail here even though the
-  // code is fine. toBeCloseTo is the matcher to use with decimals.
+  // 0.1 + 0.2 is 0.30000000000000004, so toBe would fail here even though the code is fine. toBeCloseTo is the matcher to use with decimals.
+  // Computers store numbers in binary, so some decimal fractions can't be represented exactly.
   test('floating point math stays close enough', () => {
     expect(sumOfArray([0.1, 0.2])).toBeCloseTo(0.3);
   });
@@ -167,8 +171,7 @@ describe('reverseString', () => {
     expect(reverseString('')).toBe('');
   });
 
-  // Weak on its own, since a broken function that just returned its input would
-  // still pass it. That's why it isn't the only test here.
+  // Weak on its own, since a broken function that just returned its input would still pass it. That's why it isn't the only test here.
   test('a palindrome reverses to itself', () => {
     expect(reverseString('racecar')).toBe('racecar');
   });
